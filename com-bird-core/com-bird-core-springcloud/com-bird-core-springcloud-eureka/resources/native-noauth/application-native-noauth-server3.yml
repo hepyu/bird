@@ -1,0 +1,18 @@
+server:
+  port: 30003
+security:
+  basic:
+    enabled: false
+  user:
+    name: admin
+    password: admin
+eureka:
+  instance:
+    hostname: server3
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: true
+    # 是否从eureka上获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://server1:30001/eureka/,http://server2:30002/eureka/

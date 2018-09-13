@@ -1,0 +1,37 @@
+server:
+  port: 30100
+
+spring:
+  application:
+    name: system-config-server
+  profiles:
+    active: dev #native访问本地配置 dev 打开git配置
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/hepyu/apollo-config-repo.git  # 配置git仓库的地址
+          #default-label: dev #${spring.profiles.active}
+          #search-paths:                                                  # git仓库地址下的相对地址，可以配置多个，用,分割。
+        native:
+          searchLocations: classpath:/							 # 本地环境配置
+---
+spring:
+  profiles: dev
+eureka:
+  instance:
+    prefer-ip-address: true
+    #表示eureka client发送心跳给server端的频率。如果在leaseExpirationDurationInSeconds后，server端没有收到client的心跳，则将摘除该instance
+    lease-renewal-interval-in-seconds: 5 #注册服务默认心跳时间为30秒，当一个服务器不可用，需要3个心跳才能让服务器和客户端的元数据相同。生产环境最好使用默认配置。
+    #表示eureka server至上一次收到client的心跳之后，等待下一次心跳的超时时间，在这个时间内若没收到下一次心跳，则将移除该instance
+    lease-expiration-duration-in-seconds: 10 # 续约到期时间（默认90秒）
+  client:
+    healthcheck:
+      enabled: true # 开启健康检查（依赖spring-boot-starter-actuator）
+    serviceUrl:
+      defaultZone: http://admin:admin@standalone:30001/eureka
+      #开启密码模式 http://${userName}:${password}@standalone:30001/eureka
+    registry-fetch-interval-seconds: 10
+    client: 
+      registerWithEureka: false 
+      fetchRegistry: false

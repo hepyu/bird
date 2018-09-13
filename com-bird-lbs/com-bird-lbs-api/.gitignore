@@ -1,0 +1,16 @@
+target
+/target
+/.git
+*.log
+.pydevproject
+/bin/
+/mvn.assembly.bat
+.idea
+.idea/*
+xunlei-mcp.iml
+.settings
+.settings/
+.project
+.classpath
+log
+log/

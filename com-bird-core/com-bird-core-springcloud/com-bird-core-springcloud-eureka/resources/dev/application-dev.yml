@@ -1,0 +1,122 @@
+server:
+  port: 7001
+spring:
+  profiles: usa
+  boot:
+    admin:
+      context-path: /admin
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: admin
+eureka:
+  environment: dev
+  instance:
+    hostname: eureka-server-usa.com
+    appname: eureka-cluster
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    #statusPageUrl: https://${eureka.hostname}/info
+    #healthCheckUrl: https://${eureka.hostname}/health
+    #homePageUrl: https://${eureka.hostname}
+  dashboard:
+    path: /eurekawebui
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://admin:admin@eureka-server-ldn.com:7002/eureka/,http://admin:admin@eureka-server-sgr.com:7003/eureka/
+logging:
+  level:
+    com:
+      netflix:
+        eureka: ON
+        discovery: ON  
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  
+---
+server:
+  port: 7002
+spring:
+  profiles: ldn
+  boot:
+    admin:
+      context-path: /admin
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: admin
+eureka:
+  environment: dev
+  instance:
+    hostname: eureka-server-ldn.com
+    appname: eureka-cluster
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    #statusPageUrl: https://${eureka.hostname}/info
+    #healthCheckUrl: https://${eureka.hostname}/health
+    #homePageUrl: https://${eureka.hostname}
+  dashboard:
+    path: /eurekawebui
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://admin:admin@eureka-server-usa.com:7001/eureka/,http://admin:admin@eureka-server-sgr.com:7003/eureka/
+logging:
+  level:
+    com:
+      netflix:
+        eureka: ON
+        discovery: ON
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+---
+server:
+  port: 7003
+spring:
+  profiles: sgr
+  boot:
+    admin:
+      context-path: /admin
+  security:
+    basic:
+      enabled: true
+    user:
+      name: admin
+      password: admin
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+eureka:
+  environment: dev
+  instance:
+    hostname: eureka-server-sgr.com
+    appname: eureka-cluster
+    instance-id: ${eureka.instance.hostname}:${server.port}
+    #statusPageUrl: https://${eureka.hostname}/info
+    #healthCheckUrl: https://${eureka.hostname}/health
+    #homePageUrl: https://${eureka.hostname}
+  dashboard:
+    path: /eurekawebui
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://admin:admin@eureka-server-ldn.com:7002/eureka/,http://admin:admin@eureka-server-usa.com:7001/eureka/
+logging:
+  level:
+    com:
+      netflix:
+        eureka: ON
+        discovery: ON 

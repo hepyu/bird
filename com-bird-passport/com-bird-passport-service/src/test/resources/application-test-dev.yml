@@ -1,0 +1,37 @@
+#完全yml太麻煩
+logging:
+   config: classpath:logback-dev.xml
+ 
+#查看springboot开启了哪些配置
+#debug: true
+
+#motan.xml=classpath:motan_server.xml
+motan:
+   registry:
+      address:   
+   service:
+      passport:
+         group:   passport-motan-rpc
+         module:   passport-motan-rpc
+         application:   passport-motan
+         export:   motan:10082
+         accessLog:   true
+         shareChannel:   true
+         registry:   registryConfig
+   referer:
+      passport:
+         group:   passport-motan-rpc
+         module:   passport-motan-rpc
+         application:   passport-motan
+         export:   motan:10082
+         accessLog:   true
+         shareChannel:   true
+         registry:   registryConfig
+      user:
+         group:   user-motan-rpc
+         module:   user-motan-rpc
+         application:   user-motan
+         export:   motan:10083
+         accessLog:   true
+         shareChannel:   true
+         registry:   registryConfig

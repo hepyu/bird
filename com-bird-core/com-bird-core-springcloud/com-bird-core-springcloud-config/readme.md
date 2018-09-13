@@ -1,0 +1,1 @@
+eclipse启动，增加VM启动参数：-Dspring.config.location=classpath:/dev/bootstrap.yml

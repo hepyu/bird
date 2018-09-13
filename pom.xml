@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.bird</groupId>
+	<artifactId>com.bird</artifactId>
+	<packaging>pom</packaging>
+	<version>1.0-SNAPSHOT</version>
+	<modules>
+		<module>com-bird-core</module>
+
+		<module>com-bird-lbs</module>
+		<module>com-bird-passport</module>
+		<module>com-bird-user</module>
+
+		<module>com-bird-demo</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<java.version>1.8</java.version>
+		<motan.version>1.1.1</motan.version>
+		<spring-cloud.version>Finchley.SR1</spring-cloud.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- (1).motan start -->
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-core</artifactId>
+				<version>${motan.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-springsupport</artifactId>
+				<version>${motan.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-transport-netty4</artifactId>
+				<version>${motan.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-registry-consul</artifactId>
+				<version>${motan.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-registry-zookeeper</artifactId>
+				<version>${motan.version}</version>
+				<exclusions>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-api</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>org.slf4j</groupId>
+						<artifactId>slf4j-log4j12</artifactId>
+					</exclusion>
+					<exclusion>
+						<groupId>log4j</groupId>
+						<artifactId>log4j</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-protocol-yar</artifactId>
+				<version>${motan.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>netty-all</artifactId>
+						<groupId>io.netty</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-protocol-grpc</artifactId>
+				<version>${motan.version}</version>
+				<exclusions>
+					<exclusion>
+						<artifactId>protobuf-java</artifactId>
+						<groupId>com.google.protobuf</groupId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<artifactId>protobuf-java</artifactId>
+				<groupId>com.google.protobuf</groupId>
+				<version>3.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>motan-protocol-restful</artifactId>
+				<version>${motan.version}</version>
+			</dependency>
+			<!-- <dependency> -->
+			<!-- <groupId>org.apache.httpcomponents</groupId> -->
+			<!-- <artifactId>httpcore</artifactId> -->
+			<!-- <version>4.3.3</version> -->
+			<!-- </dependency> -->
+			<dependency>
+				<groupId>com.weibo</groupId>
+				<artifactId>serialization-extension</artifactId>
+				<version>${motan.version}</version>
+			</dependency>
+			<!-- (1).motan end -->
+
+			<!-- (2).spring start -->
+			<dependency>
+				<groupId>org.springframework</groupId>
+				<artifactId>spring-framework-bom</artifactId>
+				<version>5.0.8.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+				<exclusions>
+					<exclusion>
+						<artifactId>log4j-over-slf4j</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>logback-classic</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+					<!-- 排除自带的logback依赖 -->
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<!-- 一般项目用上面这个进行管理jar包就行了 下面的是boot项目使用的 -->
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-dependencies</artifactId>
+				<version>2.0.4.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+				<exclusions>
+					<exclusion>
+						<artifactId>log4j-over-slf4j</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>logback-classic</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+					<!-- 排除自带的logback依赖 -->
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+			<dependency>
+				<groupId>io.spring.platform</groupId>
+				<artifactId>platform-bom</artifactId>
+				<version>2.0.8.RELEASE</version>
+				<type>pom</type>
+				<scope>import</scope>
+				<exclusions>
+					<exclusion>
+						<artifactId>log4j-over-slf4j</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>logback-classic</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+					<!-- 排除自带的logback依赖 -->
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+
+			<dependency>
+				<groupId>log4j</groupId>
+				<artifactId>log4j</artifactId>
+				<version>1.2.17</version>
+			</dependency>
+
+			<dependency>
+				<artifactId>slf4j-api</artifactId>
+				<groupId>org.slf4j</groupId>
+				<version>1.7.25</version>
+			</dependency>
+			<dependency>
+				<artifactId>slf4j-log4j12</artifactId>
+				<groupId>org.slf4j</groupId>
+				<version>1.7.25</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-dependencies</artifactId>
+				<version>${spring-cloud.version}</version>
+				<type>pom</type>
+				<scope>import</scope>
+				<exclusions>
+					<exclusion>
+						<artifactId>log4j-over-slf4j</artifactId>
+						<groupId>org.slf4j</groupId>
+					</exclusion>
+					<exclusion>
+						<artifactId>logback-classic</artifactId>
+						<groupId>ch.qos.logback</groupId>
+					</exclusion>
+					<!-- 排除自带的logback依赖 -->
+					<exclusion>
+						<groupId>org.springframework.boot</groupId>
+						<artifactId>spring-boot-starter-logging</artifactId>
+					</exclusion>
+				</exclusions>
+			</dependency>
+
+			<!-- (2).spring end -->
+
+			<!-- (3).swagger start -->
+
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger2</artifactId>
+				<version>2.2.2</version>
+			</dependency>
+			<dependency>
+				<groupId>io.springfox</groupId>
+				<artifactId>springfox-swagger-ui</artifactId>
+				<version>2.2.2</version>
+			</dependency>
+
+			<!-- (3). end -->
+
+			<!-- (4). protostuff序列化依赖 start -->
+			<dependency>
+				<groupId>com.dyuproject.protostuff</groupId>
+				<artifactId>protostuff-core</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			<dependency>
+				<groupId>com.dyuproject.protostuff</groupId>
+				<artifactId>protostuff-runtime</artifactId>
+				<version>1.1.2</version>
+			</dependency>
+			<!-- (4). protostuff序列化依赖 end -->
+
+			<!-- (5). zipkin start -->
+			<dependency>
+				<groupId>io.zipkin.java2</groupId>
+				<artifactId>zipkin-server</artifactId>
+				<version>2.11.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.zipkin.java2</groupId>
+				<artifactId>zipkin-autoconfigure-ui</artifactId>
+				<version>2.11.4</version>
+			</dependency>
+			<!-- (5). zipkin end -->
+
+
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-core</artifactId>
+				<version>2.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-databind</artifactId>
+				<version>2.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.core</groupId>
+				<artifactId>jackson-annotations</artifactId>
+				<version>2.9.4</version>
+			</dependency>
+			<dependency>
+				<groupId>com.fasterxml.jackson.module</groupId>
+				<artifactId>jackson-module-jaxb-annotations</artifactId>
+				<version>2.9.4</version>
+			</dependency>
+
+			<dependency>
+				<groupId>org.apache.commons</groupId>
+				<artifactId>commons-lang3</artifactId>
+				<version>3.7</version>
+			</dependency>
+
+			<dependency>
+				<groupId>io.netty</groupId>
+				<artifactId>netty-all</artifactId>
+				<version>4.1.16.Final</version>
+			</dependency>
+
+			<dependency>
+				<groupId>redis.clients</groupId>
+				<artifactId>jedis</artifactId>
+				<version>2.9.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>com.thoughtworks.xstream</groupId>
+				<artifactId>xstream</artifactId>
+				<version>1.4.10</version>
+			</dependency>
+
+		</dependencies>
+	</dependencyManagement>
+
+</project>

@@ -1,0 +1,20 @@
+server:
+  port: 30001
+security:
+  basic:
+    enabled: false
+  user:
+    name: admin
+    password: admin
+eureka:
+  environment:
+    dev
+  instance:
+    hostname: standalone
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: false
+    # 是否从eureka上获取注册信息
+    fetch-registry: false
+    service-url:
+      defaultZone: http://admin:admin@standalone:30001/eureka/

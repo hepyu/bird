@@ -1,0 +1,15 @@
+target
+/target
+/.git
+*.log
+.pydevproject
+/bin/
+/mvn.assembly.bat
+.idea
+.idea/*
+.settings
+.settings/
+.project
+.classpath
+log
+log/

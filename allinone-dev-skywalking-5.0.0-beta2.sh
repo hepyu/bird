@@ -1,0 +1,1 @@
+./allinone-template.sh dev /app/3rd/apache-skywalking-apm-incubating-5.0.0-beta2/agent/skywalking-agent.jar

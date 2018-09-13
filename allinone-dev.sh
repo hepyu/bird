@@ -1,0 +1,1 @@
+./allinone-template.sh dev

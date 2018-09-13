@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include
+		resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<property name="BIRD_LOG_FILE"
+		value="/data/bird/logs/com-bird-user-service/com-bird-user-service" />
+
+	<property name="MOTAN_ACCESS_LOG_FILE"
+		value="/data/bird/logs/com-bird-user-service/motan_access" />
+	<property name="MOTAN_ERROR_LOG_FILE"
+		value="/data/bird/logs/com-bird-user-service/motan_error" />
+	<property name="MOTAN_SERVICE_STATS_LOG_FILE"
+		value="/data/bird/logs/com-bird-user-service/motan_service_stats" />
+	<property name="MOTAN_PROFILE_LOG_FILE"
+		value="/data/bird/logs/com-bird-user-service/motan_profile" />
+
+	<appender name="bird"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<!-- <pattern>%d - %m%n</pattern> -->
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${BIRD_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${BIRD_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+
+			<MaxHistory>5</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+
+		</rollingPolicy>
+	</appender>
+
+	<!-- motan log begin -->
+	<appender name="motanAccessLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_ACCESS_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_ACCESS_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="motanServiceStatsLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_SERVICE_STATS_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_SERVICE_STATS_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="motanErrorLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_ERROR_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_ERROR_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="motanProfileLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_PROFILE_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_PROFILE_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<!-- motan log end -->
+
+	<!-- motan log begin -->
+	<logger name="accessLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanAccessLog" />
+	</logger>
+
+	<logger name="error" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanErrorLog" />
+	</logger>
+
+	<logger name="serviceStatsLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanServiceStatsLog" />
+	</logger>
+
+	<logger name="profile" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanProfileLog" />
+	</logger>
+	<!-- motan log begin -->
+
+	<logger name="com.bird" additivity="false">
+		<level value="info" />
+		<appender-ref ref="bird" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="bird" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>

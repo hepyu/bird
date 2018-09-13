@@ -1,0 +1,19 @@
+server:
+  port: 30002
+security:
+  basic:
+    enabled: false
+  user:
+    name: admin
+    password: admin
+eureka:
+  instance:
+    hostname: server2
+    appname: eureka-cluster
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: true
+    # 是否从eureka上获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://admin:admin@server1:30001,http://admin:admin@server3:30003

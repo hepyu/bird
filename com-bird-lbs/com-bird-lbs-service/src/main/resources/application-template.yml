@@ -1,0 +1,40 @@
+#完全yml太麻煩
+logging:
+   config: classpath:logback-dev.xml
+ 
+#查看springboot开启了哪些配置
+#debug: true
+
+#redis
+redis:
+   cluster:
+      #连接的超时时间
+      connectionTimeout:
+      #返回值的超时时间
+      soTimeout:
+      #最大重试次数
+      maxAttempts:
+      nodes:
+        
+   pool:
+      maxTotal:   1000
+      maxIdle:   1000
+      maxWaitMillis:   100
+      #在borrow一个jedis实例时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的；
+      testOnBorrow:   true
+      #在return给pool时，是否提前进行validate操作
+      testOnReturn:   true
+      
+#motan.xml=classpath:motan_server.xml
+motan:
+   registry:
+      address:   
+   service:
+      lbs:
+         group:   lbs-motan-rpc
+         module:   lbs-motan-rpc
+         application:   lbs-motan
+         export:   motan:10081
+         accessLog:   true
+         shareChannel:   true
+         registry:   registryConfig

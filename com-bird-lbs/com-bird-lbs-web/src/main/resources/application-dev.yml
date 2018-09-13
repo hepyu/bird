@@ -1,0 +1,23 @@
+server:
+   port:   9082
+
+#完全yml太麻煩
+logging:
+   config: classpath:logback-dev.xml
+ 
+#查看springboot开启了哪些配置
+#debug: true
+      
+#motan.xml=classpath:motan_server.xml
+motan:
+   registry:
+      address:   
+   referer:
+      lbs:
+         group:   lbs-motan-rpc
+         module:   lbs-motan-rpc
+         application:   lbs-motan
+         export:   motan:10081
+         accessLog:   true
+         shareChannel:   true
+         registry:   registryConfig

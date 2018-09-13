@@ -1,0 +1,1 @@
+./allinone-template.sh dev /app/3rd/skywalking-agent/skywalking-agent.jar

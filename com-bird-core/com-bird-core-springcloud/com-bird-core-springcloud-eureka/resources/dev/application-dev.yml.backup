@@ -1,0 +1,67 @@
+spring:
+  application:
+    name: eureka-cluster
+
+#security:
+#  basic:
+#    enabled: true
+#  user:
+#    name: admin
+#    password: admin
+
+---
+
+spring:
+  profiles: eureka-peer1
+server:
+  port: 30001
+eureka:
+  instance:
+    hostname: eureka-peer1
+    appname: eureka-cluster
+    #preferIpAddress: true
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: true
+    # 是否从eureka上获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-peer2:30002,http://eureka-peer3:30003
+      
+---
+
+spring:
+  profiles: eureka-peer2
+server:
+  port: 30002
+eureka:
+  instance:
+    hostname: eureka-peer2
+    appname: eureka-cluster
+    #preferIpAddress: true
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: true
+    # 是否从eureka上获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-peer1:30001,http://eureka-peer3:30003
+      
+---
+
+spring:
+  profiles: eureka-peer3
+server:
+  port: 30003
+eureka:
+  instance:
+    hostname: eureka-peer3
+    appname: eureka-cluster
+    #preferIpAddress: true
+  client:
+    # 表示是否注册自身到eureka服务器
+    register-with-eureka: true
+    # 是否从eureka上获取注册信息
+    fetch-registry: true
+    service-url:
+      defaultZone: http://eureka-peer1:30001,http://eureka-peer2:30002

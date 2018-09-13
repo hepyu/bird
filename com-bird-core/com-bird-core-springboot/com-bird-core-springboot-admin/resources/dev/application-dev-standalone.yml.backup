@@ -1,0 +1,51 @@
+---
+logging:
+  file: "target/boot-admin-sample-hazelcast.log"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+spring:
+  application:
+    name: spring-boot-admin-hazelcast
+  boot:
+    admin:
+      client:
+        url: http://standalone:8080
+  profiles:
+    active:
+      - secure
+  eureka:
+    instance:
+      leaseRenewalIntervalInSeconds: 10
+    client:
+      registryFetchIntervalSeconds: 5
+      serviceUrl:
+        defaultZone: http://admin:admin@standalone:30001/eureka/
+
+---
+spring:
+  profiles: insecure
+
+---
+spring:
+  profiles: secure
+  security:
+    user:
+      name: admin
+      password: admin
+  boot:
+    admin:
+      client:
+        username: admin       #These two are needed so that the client
+        password: admin   #can register at the protected server api
+        instance:
+          metadata:
+            user.name: admin        #These two are needed so that the server
+            user.password: admin    #can access the protected client endpoints

@@ -1,0 +1,20 @@
+#完全yml太麻煩
+logging:
+   config: classpath:logback-pro.xml
+ 
+#查看springboot开启了哪些配置
+#debug: true
+
+#motan.xml=classpath:motan_server.xml
+motan:
+   registry:
+      address:  
+   service:
+      user:
+         group:   user-motan-rpc
+         module:   user-motan-rpc
+         application:   user-motan
+         export:   motan:10083
+         accessLog:   true
+         shareChannel:   true
+         registry:   registryConfig

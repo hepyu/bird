@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<include
+		resource="org/springframework/boot/logging/logback/base.xml" />
+
+	<property name="BIRD_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/com-bird-passport-web" />
+	<property name="HTTP_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/http" />
+	<property name="HTTP_SLOW_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/http_slow" />
+	<property name="HTTP_SLOWX_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/http_slowx" />
+	<property name="HTTP_SLOWXX_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/http_slowxx" />
+	<property name="HTTP_NZ_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/http_nz" />
+	<property name="STAT_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/http_stat" />
+
+	<property name="MOTAN_ACCESS_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/motan_access" />
+	<property name="MOTAN_ERROR_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/motan_error" />
+	<property name="MOTAN_SERVICE_STATS_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/motan_service_stats" />
+	<property name="MOTAN_PROFILE_LOG_FILE"
+		value="/data/bird/logs/com-bird-passport-web/motan_profile" />
+
+	<appender name="bird"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<!-- <pattern>%d - %m%n</pattern> -->
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${BIRD_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${BIRD_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+
+			<MaxHistory>5</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+
+		</rollingPolicy>
+	</appender>
+
+	<appender name="httpAccess"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${HTTP_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${HTTP_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="httpAccessSlow"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${HTTP_SLOW_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${HTTP_SLOW_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="httpAccessSlowX"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${HTTP_SLOWX_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${HTTP_SLOWX_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="httpAccessSlowXX"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${HTTP_SLOWXX_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${HTTP_SLOWXX_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="httpAccessNZ"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${HTTP_NZ_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${HTTP_NZ_LOG_FILE}-%d{yyyy-MM-dd}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<appender name="httpAccessStat"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${STAT_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${STAT_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+
+	<!-- motan log begin -->
+	<appender name="motanAccessLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_ACCESS_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_ACCESS_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="motanServiceStatsLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_SERVICE_STATS_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_SERVICE_STATS_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="motanErrorLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_ERROR_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_ERROR_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<appender name="motanProfileLog"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>%d - %m%n</pattern>
+		</encoder>
+		<file>${MOTAN_PROFILE_LOG_FILE}.log</file>
+		<rollingPolicy
+			class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<!-- rollover daily -->
+			<fileNamePattern>${MOTAN_PROFILE_LOG_FILE}-%d{yyyy-MM-dd_HH}.%i.log
+			</fileNamePattern>
+			<cleanHistoryOnStart>true</cleanHistoryOnStart>
+			<MaxHistory>50</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy
+				class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>1024MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+		</rollingPolicy>
+	</appender>
+	<!-- motan log end -->
+
+	<!-- motan log begin -->
+	<logger name="accessLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanAccessLog" />
+	</logger>
+
+	<logger name="error" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanErrorLog" />
+	</logger>
+
+	<logger name="serviceStatsLog" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanServiceStatsLog" />
+	</logger>
+
+	<logger name="profile" additivity="false">
+		<level value="info" />
+		<appender-ref ref="motanProfileLog" />
+	</logger>
+	<!-- motan log begin -->
+
+	<logger name="http_access" additivity="false">
+		<level value="info" />
+		<appender-ref ref="httpAccess" />
+	</logger>
+	<logger name="http_access_slow" additivity="false">
+		<level value="info" />
+		<appender-ref ref="httpAccessSlow" />
+	</logger>
+	<logger name="http_access_slowX" additivity="false">
+		<level value="info" />
+		<appender-ref ref="httpAccessSlowX" />
+	</logger>
+	<logger name="http_access_slowXX" additivity="false">
+		<level value="info" />
+		<appender-ref ref="httpAccessSlowXX" />
+	</logger>
+	<logger name="http_access_nz" additivity="false">
+		<level value="info" />
+		<appender-ref ref="httpAccessNZ" />
+	</logger>
+	<logger name="http_access_stat" additivity="false">
+		<level value="info" />
+		<appender-ref ref="httpAccessStat" />
+	</logger>
+
+	<logger name="com.bird" additivity="false">
+		<level value="info" />
+		<appender-ref ref="bird" />
+		<appender-ref ref="CONSOLE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="bird" />
+		<appender-ref ref="CONSOLE" />
+	</root>
+
+</configuration>

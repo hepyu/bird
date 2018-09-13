@@ -1,0 +1,4 @@
+Manifest-Version: 1.0
+Premain-Class: com.bird.javaagent.premain.AgentPremain
+Agent-Class: com.bird.javaagent.premain.AgentPremain
+Can-Redefine-Classes: true
