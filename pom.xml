@@ -15,7 +15,6 @@
 		<module>com-bird-passport</module>
 		<module>com-bird-user</module>
 
-		<module>com-bird-demo</module>
 	</modules>
 
 	<properties>
