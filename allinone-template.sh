@@ -14,7 +14,7 @@ mkdir -p /data/bird/logs/com-bird-passport-web/
 
 chmod -R 777 /data/bird/logs
 
-mvn -U -e clean package install
+mvn -U -e clean package install -Dmaven.test.skip=true 
 
 if [ ! -n "$profile" ] ;then
 	echo "no support."
