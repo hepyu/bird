@@ -8,11 +8,8 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>com-bird-core-common</module>
-		<module>com-bird-core-data</module>
 		<module>com-bird-core-rpc</module>
 		<module>com-bird-core-web</module>
-		<module>com-bird-core-trace</module>
-		<module>com-bird-core-springcloud</module>
 	</modules>
 
 	<parent>
