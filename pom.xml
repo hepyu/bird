@@ -10,11 +10,7 @@
 	<version>1.0-SNAPSHOT</version>
 	<modules>
 		<module>com-bird-core</module>
-
 		<module>com-bird-lbs</module>
-		<module>com-bird-passport</module>
-		<module>com-bird-user</module>
-
 	</modules>
 
 	<properties>
